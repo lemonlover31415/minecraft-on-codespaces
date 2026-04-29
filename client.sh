@@ -14,7 +14,6 @@ nvm alias default $node_version
 
 wget $url
 unzip self-host.zip
-rm -r dist
 cp server.js proxy.js
 mv server.js client.js
 sed -i 's|8080|6767|g' proxy.js
