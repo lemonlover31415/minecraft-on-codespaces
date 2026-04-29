@@ -19,7 +19,6 @@ mv server.js client.js
 sed -i 's|8080|6767|g' proxy.js
 
 cat << "EOF" >> ~/.profile
-sleep 60
 node proxy.js --prod &
 export repo="/minecraft-on-codespaces"
 export codespace="$(echo $(gh codespace list | grep -i ${repo}) | tr -s ' ' | cut -d ' ' -f1)"
