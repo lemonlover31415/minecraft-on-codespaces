@@ -26,7 +26,7 @@ export codespace="$(echo $(gh codespace list | grep -i ${repo}) | tr -s ' ' | cu
 export proxy="$(echo $(gh codespace ports -c $codespace | grep -i $codespace) | tr -s ' ' | cut -d ' ' -f3,4 | grep -P '.*-6767\.app' | sed 's|https://||g')"
 #sed -i "s|defaultProxy:.*|defaultProxy: \"${proxy}:443\",|g" client.js
 #sed -i "s|\"defaultProxy\":.*|\"defaultProxy\": \"${proxy}:443\",|g" client.js
-#sed -i "s|proxy.mcraft.fun|${proxy}|g" client.js
+#sed -i "s|https://proxy.mcraft.fun|${proxy}|g" client.js
 node client.js &
 EOF
 
