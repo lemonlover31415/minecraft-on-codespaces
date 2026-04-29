@@ -20,13 +20,14 @@ mv server.js client.js
 sed -i 's|8080|6767|g' proxy.js
 
 cat << "EOF" >> ~/.profile
+sleep 60
 node proxy.js --prod &
 export repo="/minecraft-on-codespaces"
 export codespace="$(echo $(gh codespace list | grep -i ${repo}) | tr -s ' ' | cut -d ' ' -f1)"
 export proxy="$(echo $(gh codespace ports -c $codespace | grep -i $codespace) | tr -s ' ' | cut -d ' ' -f3,4 | grep -P '.*-6767\.app' | sed 's|https://||g')"
 #sed -i "s|defaultProxy:.*|defaultProxy: \"${proxy}:443\",|g" client.js
 #sed -i "s|\"defaultProxy\":.*|\"defaultProxy\": \"${proxy}:443\",|g" client.js
-#sed -i "s|https://proxy.mcraft.fun|${proxy}|g" client.js
+sed -i "s|https://proxy.mcraft.fun|${proxy}|g" client.js
 node client.js &
 EOF
 
